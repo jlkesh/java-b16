@@ -113,3 +113,8 @@ fabric.properties
 /.idea/compiler.xml
 /.idea/jarRepositories.xml
 /.idea/misc.xml
+/b16.iml
+/.idea/dataSources.xml
+/db.trace.db
+/.idea/git_toolbox_prj.xml
+/.idea/vcs.xml

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+        <class name="uz.jl.domains.Student" table="student_table">
+            <id name="id" type="long" column="student_name">
+                <generator class="increment" />
+            </id>
+            <property name="email" column="student_email" unique="true" not-null="true" />
+            <property name="firstName" not-null="true" />
+            <property
+                    name="studentID"
+                    unique="true"
+                    insert="true"
+                    update="false"
+            />
+        </class>
+</hibernate-mapping>
