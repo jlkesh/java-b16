@@ -1,9 +1,20 @@
 package uz.jl.domains;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "student_table_with_annotations")
 public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(unique = true, nullable = false, insertable = true, updatable = false)
     private String studentID;
+
+    @Column(nullable = false)
     private String firstName;
+    @Column(unique = true, nullable = false, name = "student_email")
     private String email;
 
     public Student() {
@@ -50,11 +61,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", studentID='" + studentID + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return "Student{" + "id=" + id + ", studentID='" + studentID + '\'' + ", firstName='" + firstName + '\'' + ", email='" + email + '\'' + '}';
     }
 }

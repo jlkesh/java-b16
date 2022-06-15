@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import uz.jl.config.HibernateUtils;
 import uz.jl.domains.Student;
+import uz.jl.domains.University;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,14 +13,16 @@ public class App {
     static StudentService studentService = ApplicationContextHolder.getBean(StudentService.class);
 
     public static void main(String[] args) {
-        Student student = new Student();
-        student.setStudentID(UUID.randomUUID().toString());
-        student.setFirstName("Spider man");
-        student.setEmail("Tom Holland");
-        studentService.create(student);
-        System.out.println("student = " + student);
-        List<Student> students = studentService.getAll();
-        System.out.println("students = " + students);
+//        Student student = new Student();
+//        student.setStudentID(UUID.randomUUID().toString());
+//        student.setFirstName("Spider man");
+//        student.setEmail("Tom Holland");
+//        studentService.create(student);
+//        System.out.println("student = " + student);
+//        List<Student> students = studentService.getAll();
+//        System.out.println("students = " + students);
+        University university = new University();
+
 
     }
 }
@@ -72,7 +75,7 @@ class StudentRepository {
     public List<Student> getAll() {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        List<Student> students = session.createQuery("from Student ", Student.class).getResultList();
+        List<Student> students = session.createQuery("from University t", Student.class).getResultList();
         session.getTransaction().commit();
         return students;
     }

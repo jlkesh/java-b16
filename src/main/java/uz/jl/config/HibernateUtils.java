@@ -17,7 +17,9 @@ public class HibernateUtils {
 
             StandardServiceRegistry ssr = new StandardServiceRegistryBuilder()
                     .configure("hibernate.cfg.xml").build();
-            Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+            Metadata meta = new MetadataSources(ssr).getMetadataBuilder()
+                    .build();
+
             return meta.getSessionFactoryBuilder().build();
             }catch (Exception e){
                 e.printStackTrace();
