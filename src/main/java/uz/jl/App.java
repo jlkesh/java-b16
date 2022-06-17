@@ -13,15 +13,15 @@ public class App {
     static StudentService studentService = ApplicationContextHolder.getBean(StudentService.class);
 
     public static void main(String[] args) {
-//        Student student = new Student();
-//        student.setStudentID(UUID.randomUUID().toString());
-//        student.setFirstName("Spider man");
-//        student.setEmail("Tom Holland");
-//        studentService.create(student);
-//        System.out.println("student = " + student);
-//        List<Student> students = studentService.getAll();
-//        System.out.println("students = " + students);
-        University university = new University();
+        Student student = new Student();
+        student.setStudentID(UUID.randomUUID().toString());
+        student.setFirstName("Iron man");
+        student.setEmail("Robert Dovniy");
+        studentService.create(student);
+        System.out.println("student = " + student);
+        List<Student> students = studentService.getAll();
+        System.out.println("students = " + students);
+//        University university = new University();
 
 
     }
@@ -75,7 +75,7 @@ class StudentRepository {
     public List<Student> getAll() {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        List<Student> students = session.createQuery("from University t", Student.class).getResultList();
+        List<Student> students = session.createQuery("from Student t", Student.class).getResultList();
         session.getTransaction().commit();
         return students;
     }

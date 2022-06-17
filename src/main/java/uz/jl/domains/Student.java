@@ -1,14 +1,43 @@
 package uz.jl.domains;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "student_table_with_annotations")
+@Table(name = "student_table_3")
 public class Student {
 
+//    @Id
+//    @SequenceGenerator(
+//            name = "student_table_id_sequence",
+//            sequenceName = "student_table_id_seq",
+//            initialValue = 1,
+//            allocationSize = 1
+//    )
+//    @GeneratedValue(generator = "student_table_id_sequence")
+
+
+//    @Id
+//    @GeneratedValue(generator = "UUID")
+//    @GenericGenerator(
+//            name = "UUID",
+//            strategy = "org.hibernate.id.UUIDGenerator"
+//    )
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(
+                            name = "uuid_gen_strategy_class",
+                            value = "org.hibernate.id.uuid.CustomVersionOneStrategy"
+                    )
+            }
+    )
+    private String id;
+
     @Column(unique = true, nullable = false, insertable = true, updatable = false)
     private String studentID;
 
@@ -20,18 +49,18 @@ public class Student {
     public Student() {
     }
 
-    public Student(long id, String studentID, String firstName, String email) {
+    public Student(String id, String studentID, String firstName, String email) {
         this.id = id;
         this.studentID = studentID;
         this.firstName = firstName;
         this.email = email;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
