@@ -3,7 +3,7 @@ package uz.jl.domains;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "student_table_with_annotations")
+@Table(name = "student_java_config2")
 public class Student {
 
     @Id
@@ -14,7 +14,7 @@ public class Student {
 
     @Column(nullable = false)
     private String firstName;
-    @Column(unique = true, nullable = false, name = "student_email")
+    @Column( nullable = false, name = "student_email")
     private String email;
 
     public Student() {
