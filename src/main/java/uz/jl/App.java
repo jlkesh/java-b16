@@ -3,6 +3,7 @@ package uz.jl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import uz.jl.config.HibernateUtils;
+import uz.jl.domains.SequenceType;
 import uz.jl.domains.Student;
 import uz.jl.domains.University;
 
@@ -13,15 +14,23 @@ public class App {
     static StudentService studentService = ApplicationContextHolder.getBean(StudentService.class);
 
     public static void main(String[] args) {
-        Student student = new Student();
-        student.setStudentID(UUID.randomUUID().toString());
-        student.setFirstName("Iron man");
-        student.setEmail("Robert Dovniy");
-        studentService.create(student);
-        System.out.println("student = " + student);
-        List<Student> students = studentService.getAll();
-        System.out.println("students = " + students);
-//        University university = new University();
+//        Student student = new Student();
+//        student.setStudentID(UUID.randomUUID().toString());
+//        student.setFirstName("Iron man");
+//        student.setEmail("Robert Dovniy");
+//        studentService.create(student);
+//        System.out.println("student = " + student);
+//        List<Student> students = studentService.getAll();
+//        System.out.println("students = " + students);
+////        University university = new University();
+        SequenceType sequenceType = new SequenceType();
+        sequenceType.setField(UUID.randomUUID().toString());
+        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession  .beginTransaction();
+
+        currentSession.persist(sequenceType);
+        currentSession.getTransaction().commit();
 
 
     }
