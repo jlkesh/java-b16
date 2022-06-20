@@ -3,18 +3,19 @@ package uz.jl.domains;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "student_java_config2")
+@Table(name = "student_java_config2", schema = "hr")
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(schema = "hr", name = "id", allocationSize = 1)
+    @GeneratedValue(generator = "id", strategy = GenerationType.IDENTITY)
     private long id;
     @Column(unique = true, nullable = false, insertable = true, updatable = false)
     private String studentID;
 
     @Column(nullable = false)
     private String firstName;
-    @Column( nullable = false, name = "student_email")
+    @Column(nullable = false, name = "student_email")
     private String email;
 
     public Student() {
